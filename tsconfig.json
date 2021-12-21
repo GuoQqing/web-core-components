@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true, // 是否允许属性定义为any
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "declaration": true,
+    "skipLibCheck": true, // 忽略 库的默认声明文件的类型检查
+  },
+  "include": [
+    "components"
+  ],
+  "exclude": ["node_modules", "dist", "lib", "es"]
+}
+
