@@ -1,20 +1,19 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: {
     index: "./components/index",
     utils: "./components/utils/index",
   },
-  devtool: "none",
   mode: "production",
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "./dist"),
     library: "xs-web-core-components",
     libraryTarget: "umd",
-    sourceMapFilename: "[file].map",
   },
   // 外部依赖
   externals: {
@@ -56,7 +55,7 @@ module.exports = {
   },
   resolve: {
     // 能够使用户在引入模块时不带扩展名
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
   module: {
     rules: [
@@ -64,9 +63,6 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
-        query: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
-        },
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -95,4 +91,12 @@ module.exports = {
       filename: "./index.css", // 文件目录会放入output.path里
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false, //不将注释提取到单独的文件中
+      }),
+    ],
+  },
 };

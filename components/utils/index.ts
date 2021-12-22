@@ -1,11 +1,10 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable radix */
+/**
+ * 公共方法
+ */
 import moment from "moment";
-
-/* eslint no-useless-escape:0 import/prefer-default-export:0 */
 import dot from "dot-prop";
 import { getSpell } from "jian-pinyin";
-import { isObject, isArray, cloneDeep } from "lodash";
+// import { isObject, isArray, cloneDeep } from "lodash";
 
 export const isUrl = (path: string): boolean => {
   const reg =
@@ -13,44 +12,7 @@ export const isUrl = (path: string): boolean => {
   return reg.test(path);
 };
 
-/**
- * 移动设备检测
- * @ref http://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device-in-jquery/3540295#3540295
- * @returns {boolean}
- */
-export const mobilecheck = (): boolean => {
-  return (
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(
-      navigator.userAgent
-    ) || window.screen.width >= 768
-  );
-};
-
-export const completionDate = (num: number) => {
-  if (num < 10) {
-    return `0${num}`;
-  }
-  return num;
-};
-
-export const TimeDown = (m: number, box: HTMLElement) => {
-  const temH = m / 3600;
-  const h = completionDate(parseInt(String(temH), 10));
-
-  const temI = (m - Number(h) * 3600) / 60;
-  const i = completionDate(parseInt(String(temI), 10));
-
-  const temS = m % 60;
-  const s = completionDate(parseInt(String(temS), 10));
-
-  // eslint-disable-next-line no-param-reassign
-  box.innerText = `${h}时 ${i}分${s}秒`;
-  if (m <= 0) {
-    // eslint-disable-next-line no-param-reassign
-    box.innerText = "立即抢购";
-  }
-};
-
+// 自定义sessionStorage
 export const sessionStore = {
   setItem: (key: string, value: string) => {
     sessionStorage.setItem(key, value);
@@ -66,6 +28,7 @@ export const sessionStore = {
   },
 };
 
+// 自定义localStorage
 export const localStore = {
   setItem: (key: string, value: string) => {
     localStorage.setItem(key, value);
@@ -81,38 +44,7 @@ export const localStore = {
   },
 };
 
-// 获取token，优先获取 sessionStore token
-export const getToken = () => {
-  let token = "";
-  const sessionToken = sessionStore.getItem("token");
-  const localToken = localStore.getItem("token");
-  if (sessionToken && sessionToken !== "undefined" && sessionToken !== "null") {
-    token = sessionToken;
-  } else if (
-    localToken &&
-    localToken !== "undefined" &&
-    localToken !== "null"
-  ) {
-    token = localToken;
-  }
-  return token;
-};
-
-export const clearToken = () => {
-  localStore.removeItem("token");
-  sessionStore.removeItem("token");
-};
-
-const { NODE_ENV } = process.env;
-
-// 拦截所有 log，可以通过环境区分是否输出到 console
-export const log =
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  NODE_ENV === "development" ? console.log.bind(console) : () => {};
-
 // dot优化
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const dotOptimal = (obj: object, path: string, placeholder: any) => {
   const res = dot.get(obj, path, placeholder);
   // dot结果为null || '' || undefined 时取placeholder
@@ -123,38 +55,10 @@ export const dotOptimal = (obj: object, path: string, placeholder: any) => {
 };
 
 // 删除对象对应的key
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const omit = (keys: string[], obj: object) => {
   const res: any = { ...obj };
   keys.forEach((key: string) => delete res[key]);
   return res;
-};
-
-export const returnMonthsDate = () => {
-  return [
-    moment(new Date()).subtract(1, "months").format("YYYY-MM-DD"),
-    moment(new Date()).format("YYYY-MM-DD"),
-  ];
-};
-
-export const returnScopeDate = (num: number) => {
-  return [
-    moment(new Date()).subtract(num, "day").format("YYYY-MM-DD"),
-    moment(new Date()).format("YYYY-MM-DD"),
-  ];
-};
-
-export const numberFormat = (num: number | string = 0) => {
-  return Number(num).toFixed(2).toLocaleString();
-};
-
-// 本地查找是否有权限
-export const isAuthority = (funcCode: string) => {
-  const buttonCodeArr = JSON.parse(
-    sessionStore.getItem("buttonCodeArr") || "[]"
-  );
-  return buttonCodeArr.includes(funcCode);
 };
 
 // Select数据按字母分组
@@ -205,93 +109,6 @@ export const letterGroup = (datas: []) => {
     }
   });
   return target;
-};
-
-/**
- * 将接口数据转换为组件需要的格式 *
- * @param list 需要转换的数据
- * @param config 转换的键值对 key 为期望返回的字段名，value 为原始需要转换的字段名
- * @param recursionKey 递归结束判断的字段，如果存在会作为递归的第一个参数
- * @return list
- * */
-export const recursionList = (
-  list: any[],
-  config: any,
-  recursionKey = "subList"
-) => {
-  const newList = cloneDeep(list).map((i: any) => {
-    const o = { ...i };
-    Object.keys(config).forEach((j: string) => {
-      const key = j;
-      const value = config[j];
-      if (value === recursionKey) {
-        if (i[recursionKey]) {
-          o[key] = recursionList(i[recursionKey], config, recursionKey);
-        }
-      } else if (isObject(value)) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        o[key] = value?.func(i[value?.key]);
-      } else {
-        o[key] = i[value];
-      }
-    });
-    return o;
-  });
-  return newList;
-};
-
-/**
- * 获取cookie
- * @param name
- * @returns {*}
- */
-export const getCookie = (name: string) => {
-  const reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
-  const arr = document.cookie.match(reg);
-  if (arr) {
-    return decodeURI(arr[2]);
-  }
-  return null;
-};
-
-/**
- * 设置cookie
- * @param name
- * @param value
- * @param expiresHours
- * @param domain
- */
-export const setCookie = (
-  name: string,
-  value: string,
-  expiresHours = 24,
-  domain = ".91xinshang.com"
-) => {
-  const expiresTime = new Date();
-  expiresTime.setTime(expiresTime.getTime() + expiresHours * 60 * 60 * 1000);
-  document.cookie = `${name}=${encodeURIComponent(
-    value
-  )};expires=${expiresTime.toUTCString()};domain=${domain};path=/`;
-};
-
-/**
- * 删除cookie
- * @param name
- * @param domain
- */
-export const deleteCookie = (
-  name: string,
-  domain = window.location.hostname
-) => {
-  const expiresTime = new Date();
-  expiresTime.setTime(expiresTime.getTime() - 1);
-  const value = getCookie(name);
-  if (value != null) {
-    document.cookie = `${name}=${encodeURIComponent(
-      value
-    )};expires=${expiresTime.toUTCString()};domain=${domain};path=/`;
-  }
 };
 
 // 图片加载失败容错地址
