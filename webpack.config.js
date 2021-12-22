@@ -14,7 +14,7 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     library: "xs-web-core-components",
     libraryTarget: "umd",
-    sourceMapFilename: "[file].map", // string
+    sourceMapFilename: "[file].map",
   },
   // 外部依赖
   externals: {

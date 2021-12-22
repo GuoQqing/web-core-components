@@ -1,3 +1,6 @@
+/**
+ * 编译ts生成lib、es文件
+ */
 const gulp = require("gulp");
 const babel = require("gulp-babel");
 const clean = require("del");
