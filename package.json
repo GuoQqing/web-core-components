@@ -1,6 +1,6 @@
 {
   "name": "web-core-components",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -14,7 +14,8 @@
   "files": [
     "es",
     "dist",
-    "lib"
+    "lib",
+    "utils"
   ],
   "sideEffects": [
     "./components/**/*",
@@ -22,7 +23,7 @@
     "*.css"
   ],
   "publishConfig": {
-    "registry": "http://192.168.3.35:8081/artifactory/api/npm/npm-dev-local/"
+    "registry": "https://registry.npmjs.org"
   },
   "author": "",
   "license": "ISC",
