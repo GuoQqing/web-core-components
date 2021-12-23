@@ -28,10 +28,8 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged"
-    }
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
