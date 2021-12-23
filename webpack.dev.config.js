@@ -1,34 +1,34 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    path: path.resolve(__dirname, "./example/index.tsx"),
+    path: path.resolve(__dirname, './example/index.tsx'),
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   output: {
-    path: path.resolve(__dirname, "./example"),
-    filename: "bundle.js",
-    sourceMapFilename: "[file].map",
+    path: path.resolve(__dirname, './example'),
+    filename: 'bundle.js',
+    sourceMapFilename: '[file].map',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
           plugins: [
             [
-              "import",
+              'import',
               {
-                libraryName: "antd",
-                libraryDirectory: "lib", // libraryDirectory 默认为 lib
-                style: "css",
+                libraryName: 'antd',
+                libraryDirectory: 'lib', // libraryDirectory 默认为 lib
+                style: 'css',
               },
             ],
           ],
@@ -36,27 +36,27 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 10000,
         },
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: ["css-loader", "sass-loader"],
+        use: ['css-loader', 'sass-loader'],
       },
       {
         test: /\.less$/,
-        use: ["css-loader", "less-loader"],
+        use: ['css-loader', 'less-loader'],
       },
     ],
   },
   devServer: {
-    static: path.join(__dirname, "./example"),
+    static: path.join(__dirname, './example'),
     compress: true,
     port: 3001, // 启动端口为 3001 的服务
     open: true, // 自动打开浏览器

@@ -1,13 +1,13 @@
 /**
  * 组件demo
  */
-import React from "react";
-import { Form, Card } from "antd";
+import React from 'react';
+import { Form, Card } from 'antd';
 
-import ImageUpload from "../components/imageUpload";
-import { getValueFromEventImg } from "../components/utils";
+import ImageUpload from '../components/imageUpload';
+import { getValueFromEventImg } from '../components/utils';
 
-function App(props) {
+const App: React.FC = (props) => {
   return (
     <Form>
       {/* ImageUpload 图片上传 */}
@@ -23,6 +23,6 @@ function App(props) {
       </Card>
     </Form>
   );
-}
+};
 
 export default App;

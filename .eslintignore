@@ -1,0 +1,32 @@
+
+# node_modules
+node_modules/*
+
+# dist
+dist/*
+lib/*
+es/*
+
+example/bundle.js
+
+package.json
+
+**/*.less
+
+/.vscode
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-error.log
+
+/coverage
+.idea
+*bak
+.vscode
+
+# visual studio code
+.history
+*.log
+functions/*
+.temp/**

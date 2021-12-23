@@ -1,1 +1,1 @@
-declare module "jian-pinyin";
+declare module 'jian-pinyin';

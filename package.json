@@ -10,7 +10,10 @@
     "build:dist": "webpack --config webpack.prod.config.js --progress",
     "build:lib": "gulp lib",
     "build:es": "gulp es",
-    "build": "gulp && webpack --config webpack.prod.config.js --progress"
+    "build": "gulp && webpack --config webpack.prod.config.js --progress",
+    "lint": "eslint --cache --ext .js,jsx,ts,tsx --ignore-path .eslintignore .",
+    "lint-staged": "lint-staged",
+    "prettier": "prettier -c --write \"components/**/*\""
   },
   "files": [
     "es",
@@ -26,6 +29,19 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write",
+      "eslint --cache"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write",
+      "eslint --cache"
+    ]
+  },
   "author": "gq",
   "license": "ISC",
   "devDependencies": {
@@ -38,6 +54,8 @@
     "@types/lodash": "^4.14.178",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
     "antd": "^4.17.4",
     "babel-loader": "^8.2.3",
     "babel-plugin-import": "^1.13.3",
@@ -45,6 +63,14 @@
     "css-loader": "^6.5.1",
     "del": "^6.0.0",
     "dva": "^2.4.1",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
@@ -52,6 +78,7 @@
     "lodash": "^4.17.21",
     "merge2": "^1.4.1",
     "mini-css-extract-plugin": "^1.0.0",
+    "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sass-loader": "^12.4.0",

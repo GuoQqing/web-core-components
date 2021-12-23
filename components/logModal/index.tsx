@@ -1,10 +1,10 @@
 /**
  * 操作日志Modal
  */
-import React from "react";
-import { Modal } from "antd";
-import { connect } from "dva";
-import ProTable, { ProColumns } from "@ant-design/pro-table";
+import React from 'react';
+import { Modal } from 'antd';
+import { connect } from 'dva';
+import ProTable, { ProColumns } from '@ant-design/pro-table';
 
 interface LogModalProps {
   bizId: number; // 业务id
@@ -20,27 +20,27 @@ const LogModal: React.FC<LogModalProps | any> = ({
 }) => {
   const columns: ProColumns[] = [
     {
-      dataIndex: "operateDate",
-      title: "时间",
-      align: "center",
+      dataIndex: 'operateDate',
+      title: '时间',
+      align: 'center',
       width: 120,
     },
     {
-      dataIndex: "operator",
-      title: "操作人",
-      align: "center",
+      dataIndex: 'operator',
+      title: '操作人',
+      align: 'center',
       width: 120,
     },
     {
-      dataIndex: "operateType",
-      title: "操作类型",
-      align: "center",
+      dataIndex: 'operateType',
+      title: '操作类型',
+      align: 'center',
       width: 120,
     },
     {
-      dataIndex: "content",
-      title: "变更内容",
-      align: "center",
+      dataIndex: 'content',
+      title: '变更内容',
+      align: 'center',
     },
   ];
 
@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   // 获取操作日志列表
   fetchAuthLogList: (payload: any) =>
     dispatch({
-      type: "common/fetchAuthLogList",
+      type: 'common/fetchAuthLogList',
       payload,
     }),
 });
