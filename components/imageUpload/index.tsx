@@ -37,6 +37,21 @@ const ImageUpload: React.FC<ImageUploadProps> = (props) => {
     disabled = false,
   } = props;
   console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
+  console.log(233);
   // 上传文件改变时的状态（上传中、完成、失败都会调用这个函数）
   const onChangeImage = async ({ file, fileList }: any) => {
     // 点击移除文件时也会调用这个方法，目前并不需要

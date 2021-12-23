@@ -12,7 +12,6 @@
     "build:es": "gulp es",
     "build": "gulp && webpack --config webpack.prod.config.js --progress",
     "lint": "eslint --cache --ext .js,jsx,ts,tsx --ignore-path .eslintignore .",
-    "lint-staged": "lint-staged",
     "prettier": "prettier -c --write \"components/**/*\""
   },
   "files": [
@@ -29,8 +28,10 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
