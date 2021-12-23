@@ -29,8 +29,10 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
@@ -74,6 +76,7 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "husky": "^7.0.4",
     "less-loader": "^10.2.0",
     "lodash": "^4.17.21",
     "merge2": "^1.4.1",
