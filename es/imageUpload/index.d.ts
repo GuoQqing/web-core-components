@@ -1,7 +1,7 @@
 /**
  * 图片上传组件
  */
-import React from "react";
+import React from 'react';
 export interface ImageUploadProps {
     onChange?: (formValue: any) => void;
     checkSize?: (formValue: any) => Promise<boolean>;

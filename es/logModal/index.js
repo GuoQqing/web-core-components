@@ -13,10 +13,11 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 /**
  * 操作日志Modal
  */
-import React from "react";
-import { Modal } from "antd";
-import { connect } from "dva";
-import ProTable from "@ant-design/pro-table";
+import React from 'react';
+import { Modal } from 'antd';
+import { connect } from 'dva';
+import ProTable from '@ant-design/pro-table';
+import './index.less';
 
 var LogModal = function LogModal(_ref) {
   var bizId = _ref.bizId,
@@ -25,24 +26,24 @@ var LogModal = function LogModal(_ref) {
       otherProps = _objectWithoutProperties(_ref, _excluded);
 
   var columns = [{
-    dataIndex: "operateDate",
-    title: "时间",
-    align: "center",
+    dataIndex: 'operateDate',
+    title: '时间',
+    align: 'center',
     width: 120
   }, {
-    dataIndex: "operator",
-    title: "操作人",
-    align: "center",
+    dataIndex: 'operator',
+    title: '操作人',
+    align: 'center',
     width: 120
   }, {
-    dataIndex: "operateType",
-    title: "操作类型",
-    align: "center",
+    dataIndex: 'operateType',
+    title: '操作类型',
+    align: 'center',
     width: 120
   }, {
-    dataIndex: "content",
-    title: "变更内容",
-    align: "center"
+    dataIndex: 'content',
+    title: '变更内容',
+    align: 'center'
   }];
   return /*#__PURE__*/React.createElement(Modal, _extends({
     title: "\u64CD\u4F5C\u65E5\u5FD7",
@@ -91,7 +92,9 @@ var LogModal = function LogModal(_ref) {
         }
       }, _callee);
     }))
-  }));
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "bgc"
+  }, "123"));
 };
 
 var mapStateToProps = function mapStateToProps() {
@@ -103,7 +106,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     // 获取操作日志列表
     fetchAuthLogList: function fetchAuthLogList(payload) {
       return dispatch({
-        type: "common/fetchAuthLogList",
+        type: 'common/fetchAuthLogList',
         payload: payload
       });
     }

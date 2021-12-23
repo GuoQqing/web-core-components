@@ -25,10 +25,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /**
  * 图片上传组件
  */
-import React from "react";
-import { Upload, Image, message } from "antd";
-import { PlusOutlined, EyeOutlined, DeleteOutlined } from "@ant-design/icons";
-import { omit, isUrl, imageError, getValueFromEventImg } from "../utils";
+import React from 'react';
+import { Upload, Image, message } from 'antd';
+import { PlusOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
+import { omit, isUrl, imageError, getValueFromEventImg } from '../utils';
 
 var ImageUpload = function ImageUpload(props) {
   var onChange = props.onChange,
@@ -56,7 +56,7 @@ var ImageUpload = function ImageUpload(props) {
             case 0:
               file = _ref.file, fileList = _ref.fileList;
 
-              if (!(file.status === "removed")) {
+              if (!(file.status === 'removed')) {
                 _context.next = 3;
                 break;
               }
@@ -65,12 +65,12 @@ var ImageUpload = function ImageUpload(props) {
 
             case 3:
               // 接口有变动，请求status === 200并不一定上传成功，response.code === 500时为上传失败
-              if (file.status === "error" || (file === null || file === void 0 ? void 0 : (_file$response = file.response) === null || _file$response === void 0 ? void 0 : _file$response.code) === "500") {
+              if (file.status === 'error' || (file === null || file === void 0 ? void 0 : (_file$response = file.response) === null || _file$response === void 0 ? void 0 : _file$response.code) === '500') {
                 message.error("".concat(file.name, "\u4E0A\u4F20\u5931\u8D25"));
               } // 上传图片成功回调
 
 
-              if (file.status === "done" || (file === null || file === void 0 ? void 0 : (_file$response2 = file.response) === null || _file$response2 === void 0 ? void 0 : _file$response2.code) === "200") {
+              if (file.status === 'done' || (file === null || file === void 0 ? void 0 : (_file$response2 = file.response) === null || _file$response2 === void 0 ? void 0 : _file$response2.code) === '200') {
                 onUploadSuccess && onUploadSuccess(getValueFromEventImg(fileList));
               }
 
@@ -78,9 +78,9 @@ var ImageUpload = function ImageUpload(props) {
                 var _item$response;
 
                 // 接口有变动，请求status === 200并不一定上传成功，response.code === 500时为上传失败
-                if (((_item$response = item.response) === null || _item$response === void 0 ? void 0 : _item$response.code) === "500") {
+                if (((_item$response = item.response) === null || _item$response === void 0 ? void 0 : _item$response.code) === '500') {
                   return _objectSpread(_objectSpread({}, item), {}, {
-                    status: "error"
+                    status: 'error'
                   });
                 }
 
@@ -119,7 +119,7 @@ var ImageUpload = function ImageUpload(props) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              if (!(typeof checkSize === "function")) {
+              if (!(typeof checkSize === 'function')) {
                 _context2.next = 6;
                 break;
               }
@@ -138,7 +138,7 @@ var ImageUpload = function ImageUpload(props) {
               return _context2.abrupt("return", Upload.LIST_IGNORE);
 
             case 6:
-              enIndex = ((_file$name = file.name) === null || _file$name === void 0 ? void 0 : _file$name.lastIndexOf(".")) === -1 ? (_file$name2 = file.name) === null || _file$name2 === void 0 ? void 0 : _file$name2.length : (_file$name3 = file.name) === null || _file$name3 === void 0 ? void 0 : _file$name3.lastIndexOf(".");
+              enIndex = ((_file$name = file.name) === null || _file$name === void 0 ? void 0 : _file$name.lastIndexOf('.')) === -1 ? (_file$name2 = file.name) === null || _file$name2 === void 0 ? void 0 : _file$name2.length : (_file$name3 = file.name) === null || _file$name3 === void 0 ? void 0 : _file$name3.lastIndexOf('.');
               fileName = (_file$name4 = file.name) === null || _file$name4 === void 0 ? void 0 : _file$name4.substring(0, enIndex);
 
               if (/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/g.test(fileName)) {
@@ -146,7 +146,7 @@ var ImageUpload = function ImageUpload(props) {
                 break;
               }
 
-              message.error("上传失败，图片名称只能含有汉字，数字，字母，下划线");
+              message.error('上传失败，图片名称只能含有汉字，数字，字母，下划线');
               return _context2.abrupt("return", Upload.LIST_IGNORE);
 
             case 11:
@@ -171,12 +171,12 @@ var ImageUpload = function ImageUpload(props) {
       marginTop: 8
     }
   }, "\u4E0A\u4F20\u56FE\u7247"));
-  var currentProps = omit(["onChange", "checkSize", "value", "max", "custUploadButton", "renderCustItemoOperate", "customizeAction"], props);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Upload, _extends({
+  var currentProps = omit(['onChange', 'checkSize', 'value', 'max', 'custUploadButton', 'renderCustItemoOperate', 'customizeAction'], props);
+  return /*#__PURE__*/React.createElement(Upload, _extends({
     accept: ".jpg, .jpeg, .png",
     itemRender: function itemRender(originNode, file, _, actions) {
       return /*#__PURE__*/React.createElement("div", null, // 图片上传完成后 && 上传类型为picture-card，显示Image预览
-      file.status === "done" && listType === "picture-card" ? /*#__PURE__*/React.createElement("div", {
+      file.status === 'done' && listType === 'picture-card' ? /*#__PURE__*/React.createElement("div", {
         className: "uploadImages"
       }, /*#__PURE__*/React.createElement(Image, {
         key: file.url,
@@ -200,10 +200,10 @@ var ImageUpload = function ImageUpload(props) {
           }))
         }
       })) : originNode, // 渲染自定义每项额外的操作
-      renderCustItemoOperate && file.status === "done" ? /*#__PURE__*/React.createElement("div", {
+      renderCustItemoOperate && file.status === 'done' ? /*#__PURE__*/React.createElement("div", {
         style: {
-          display: "flex",
-          justifyContent: "center"
+          display: 'flex',
+          justifyContent: 'center'
         }
       }, renderCustItemoOperate(file)) : null);
     }
@@ -216,18 +216,18 @@ var ImageUpload = function ImageUpload(props) {
       }
 
       return _objectSpread(_objectSpread({
-        status: "done",
+        status: 'done',
         uid: item.url
       }, item), {}, {
         url: url
       });
     }),
-    action: customizeAction || "/erp/comm/upload",
+    action: customizeAction || '/erp/comm/upload',
     name: "uploadFileInput",
     onRemove: onRemove,
     beforeUpload: beforeUpload,
     onChange: onChangeImage
-  }), max && value.length >= max ? null : uploadButton));
+  }), max && value.length >= max ? null : uploadButton);
 };
 
 export default ImageUpload;

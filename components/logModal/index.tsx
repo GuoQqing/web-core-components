@@ -5,6 +5,7 @@ import React from 'react';
 import { Modal } from 'antd';
 import { connect } from 'dva';
 import ProTable, { ProColumns } from '@ant-design/pro-table';
+import './index.less';
 
 interface LogModalProps {
   bizId: number; // 业务id
@@ -67,6 +68,7 @@ const LogModal: React.FC<LogModalProps | any> = ({
           return {};
         }}
       />
+      <div className="bgc">123</div>
     </Modal>
   );
 };
