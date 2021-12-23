@@ -17,7 +17,6 @@ import React from 'react';
 import { Modal } from 'antd';
 import { connect } from 'dva';
 import ProTable from '@ant-design/pro-table';
-import './index.less';
 
 var LogModal = function LogModal(_ref) {
   var bizId = _ref.bizId,
@@ -92,9 +91,7 @@ var LogModal = function LogModal(_ref) {
         }
       }, _callee);
     }))
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "bgc"
-  }, "123"));
+  }));
 };
 
 var mapStateToProps = function mapStateToProps() {
